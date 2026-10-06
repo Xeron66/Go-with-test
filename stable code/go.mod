@@ -1,3 +1,3 @@
-module project/with-test
+module stable-code
 
 go 1.27.1
