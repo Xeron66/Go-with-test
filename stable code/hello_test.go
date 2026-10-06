@@ -13,7 +13,7 @@ func TestHello(t *testing.T) {
 
 	// test run for Hello function with an argument
 	t.Run("saying, Hello to people", func(t *testing.T) {
-		actual := Hello("Chris")
+		actual := Hello("Chris", "")
 		expected := "Hello, Chris"
 
 		if actual != expected {
@@ -23,11 +23,26 @@ func TestHello(t *testing.T) {
 
 	// test run for Hello function with no argument
 	t.Run("say, 'Hello, World' when empty string is supplied", func(t *testing.T) {
-		actual := Hello("")
+		actual := Hello("", "")
 		expected := "Hello, World"
 
 		if actual != expected {
 			t.Errorf("Actual : %q but Expected: %q", actual, expected)
 		}
 	})
+
+	// test run for Hello function with Spanish language argument
+	t.Run("in Spanish", func(t *testing.T) {
+		actual := Hello("Elodie", "Spanish")
+		expected := "Hola, Elodie"
+
+		assertCorrectMessage(t, actual, expected)
+	})
+}
+
+func assertCorrectMessage(t testing.TB, actual, expected string) {
+	t.Helper()
+	if actual != expected {
+		t.Errorf("Actual: %q, Expected: %q", actual, expected)
+	}
 }
